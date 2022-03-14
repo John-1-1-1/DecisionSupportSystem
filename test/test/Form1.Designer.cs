@@ -33,10 +33,16 @@ namespace test
         {
             this.FPSlabel = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label_y_mouse_move = new System.Windows.Forms.Label();
+            this.label_x_mouse_move = new System.Windows.Forms.Label();
+            this.label_x_mouse_down = new System.Windows.Forms.Label();
+            this.label_y_mouse_down = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.показатьКадрсекундуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.координатыМышиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +59,10 @@ namespace test
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label_y_mouse_move);
+            this.panel1.Controls.Add(this.label_x_mouse_move);
+            this.panel1.Controls.Add(this.label_x_mouse_down);
+            this.panel1.Controls.Add(this.label_y_mouse_down);
             this.panel1.Controls.Add(this.FPSlabel);
             this.panel1.Location = new System.Drawing.Point(12, 30);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -62,6 +72,42 @@ namespace test
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUp);
+            // 
+            // label_y_mouse_move
+            // 
+            this.label_y_mouse_move.AutoSize = true;
+            this.label_y_mouse_move.Location = new System.Drawing.Point(135, 16);
+            this.label_y_mouse_move.Name = "label_y_mouse_move";
+            this.label_y_mouse_move.Size = new System.Drawing.Size(40, 16);
+            this.label_y_mouse_move.TabIndex = 4;
+            this.label_y_mouse_move.Text = "None";
+            // 
+            // label_x_mouse_move
+            // 
+            this.label_x_mouse_move.AutoSize = true;
+            this.label_x_mouse_move.Location = new System.Drawing.Point(135, 0);
+            this.label_x_mouse_move.Name = "label_x_mouse_move";
+            this.label_x_mouse_move.Size = new System.Drawing.Size(40, 16);
+            this.label_x_mouse_move.TabIndex = 3;
+            this.label_x_mouse_move.Text = "None";
+            // 
+            // label_x_mouse_down
+            // 
+            this.label_x_mouse_down.AutoSize = true;
+            this.label_x_mouse_down.Location = new System.Drawing.Point(68, 0);
+            this.label_x_mouse_down.Name = "label_x_mouse_down";
+            this.label_x_mouse_down.Size = new System.Drawing.Size(40, 16);
+            this.label_x_mouse_down.TabIndex = 2;
+            this.label_x_mouse_down.Text = "None";
+            // 
+            // label_y_mouse_down
+            // 
+            this.label_y_mouse_down.AutoSize = true;
+            this.label_y_mouse_down.Location = new System.Drawing.Point(68, 16);
+            this.label_y_mouse_down.Name = "label_y_mouse_down";
+            this.label_y_mouse_down.Size = new System.Drawing.Size(40, 16);
+            this.label_y_mouse_down.TabIndex = 1;
+            this.label_y_mouse_down.Text = "None";
             // 
             // menuStrip1
             // 
@@ -80,7 +126,8 @@ namespace test
             // 
             this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
-            this.показатьКадрсекундуToolStripMenuItem});
+            this.показатьКадрсекундуToolStripMenuItem,
+            this.координатыМышиToolStripMenuItem});
             this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
             this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
             this.настройкиToolStripMenuItem.Text = "Настройки";
@@ -96,6 +143,19 @@ namespace test
             this.показатьКадрсекундуToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
             this.показатьКадрсекундуToolStripMenuItem.Text = "Показать кадр/секунду";
             this.показатьКадрсекундуToolStripMenuItem.Click += new System.EventHandler(this.FPSToolStripMenuItem_Click);
+            // 
+            // координатыМышиToolStripMenuItem
+            // 
+            this.координатыМышиToolStripMenuItem.Name = "координатыМышиToolStripMenuItem";
+            this.координатыМышиToolStripMenuItem.Size = new System.Drawing.Size(251, 26);
+            this.координатыМышиToolStripMenuItem.Text = " Координаты мыши";
+            this.координатыМышиToolStripMenuItem.Click += new System.EventHandler(this.координатыМышиToolStripMenuItem_Click);
+            // 
+            // directorySearcher1
+            // 
+            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
             // 
             // Form1
             // 
@@ -126,6 +186,12 @@ namespace test
         private System.Windows.Forms.ToolStripMenuItem настройкиToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem показатьКадрсекундуToolStripMenuItem;
+        private System.Windows.Forms.Label label_y_mouse_move;
+        private System.Windows.Forms.Label label_x_mouse_move;
+        private System.Windows.Forms.Label label_x_mouse_down;
+        private System.Windows.Forms.Label label_y_mouse_down;
+        private System.Windows.Forms.ToolStripMenuItem координатыМышиToolStripMenuItem;
+        private System.DirectoryServices.DirectorySearcher directorySearcher1;
     }
 }
 

@@ -17,25 +17,26 @@ namespace test
         Camera camera;
         public Panel panel;
         DrowInScreen screen = null;
+        
+
         public Form1()
         {
             InitializeComponent();
             Label label = FPSlabel;
             label.Visible = false;
+            label_x_mouse_down.Visible = false;
+            label_x_mouse_move.Visible = false;
+            label_y_mouse_down.Visible = false;
+            label_y_mouse_move.Visible = false;
+
             setup_timer();
-            this.panel = panel1;   
-            screen = new DrowInScreen(this);
-            camera = new Camera(this, screen);
+            screen = new DrowInScreen(this, panel1);
+            camera = new Camera(this, screen,panel1);
         }
 
         private void draw_window()
         {
-        https://www.cyberforum.ru/windows-forms/thread2399546.html
-            Graphics panelGraphics;
-            var g =  panel.CreateGraphics();
-            g.Clear(System.Drawing.Color.OldLace);
-            screen.DrowLine(1, 1, 100, 100);
-            panel.Render();
+            screen.DrowLine(100, 100, 50, 50);
         }
 
 
@@ -44,6 +45,7 @@ namespace test
         public int frames_count_in_sec = 0;
         private void setup_timer()
         {
+            
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1000 / 90);
             timer.Tick += OnTimer;
@@ -67,6 +69,11 @@ namespace test
         {
             ++frames_count_in_sec;
             draw_window();
+            var out_data = camera.get_positions();
+            label_x_mouse_down.Text = out_data.x1;
+            label_y_mouse_down.Text = out_data.y1;  
+            label_x_mouse_move.Text = out_data.x2;
+            label_y_mouse_move.Text = out_data.y2;
         }
 
 
@@ -77,32 +84,47 @@ namespace test
 
         private void MouseUp(object sender, MouseEventArgs e)
         {
-            camera.MouseUp();
+            if (e.Button == MouseButtons.Right)
+                camera.MouseUp();
         }
 
         private void MouseDown(object sender, MouseEventArgs e)
         {
-            camera.MouseDown();
+            if (e.Button == MouseButtons.Right) 
+                camera.MouseDown();
         }
 
         private void MouseMove(object sender, MouseEventArgs e)
         {
-            camera.MouseMove();
+            if (e.Button == MouseButtons.Right)
+                camera.MouseMove();
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
                 if (camera != null) { 
                 camera.set_screen(this.Width, this.Height);
-                camera.screen_resize();
+                camera.screen_resize(this.Width, this.Height);
+                screen.new_buffer();
+                screen.DrowLine(100, 100, 50, 50);
             }
         }
-
-   
 
         private void FPSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FPSlabel.Visible = !FPSlabel.Visible;
+        }
+
+        private void координатыМышиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            label_x_mouse_down.Visible = !label_x_mouse_down.Visible;   
+            label_x_mouse_move.Visible = !label_x_mouse_move.Visible;   
+            label_y_mouse_down.Visible = !label_y_mouse_down.Visible;
+            label_y_mouse_move.Visible = !label_y_mouse_move.Visible;
+            label_x_mouse_down.Text = "None";
+            label_x_mouse_move.Text = "None";
+            label_y_mouse_down.Text = "None";
+            label_y_mouse_move.Text = "None";
         }
     }
 
