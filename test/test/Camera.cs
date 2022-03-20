@@ -14,29 +14,19 @@ namespace test
         int pos_in_screen_x = 0;
         int pos_in_screen_y = 0;
         Pos beginner_pos_screen = new Pos(0,0);
-        private (Pos up_left, Pos bot_right) indentation = 
+        public (Pos up_left, Pos bot_right) indentation = 
             (new Pos(12,30), new Pos(22, 40));
         protected bool mouse_is_down = false;
         public (int x, int y) pos = (0, 0);
         Form1 form;
-        DrowInScreen screen = null;
+        DrawInScreen screen = null;
         Panel panel1 = null;
         
-        public Camera(Form1 form, DrowInScreen scr, Panel panel1)
+        public Camera(Form1 form, DrawInScreen scr, Panel panel1)
         {
             this.form = form;
             this.screen = scr;
             this.panel1 = panel1;
-        }
-
-        public void set_screen(int screen_x, int screen_y)
-        {
-
-        }
-
-        public (int x, int y) get_fix_coord(int x, int y)
-        {
-            return (pos_in_screen_x + x, pos_in_screen_y + y);
         }
 
         public void screen_resize(int x, int y)

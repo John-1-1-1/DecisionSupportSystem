@@ -16,8 +16,9 @@ namespace test
     {
         Camera camera;
         public Panel panel;
-        DrowInScreen screen = null;
-        
+        DrawInScreen screen = null;
+        WorkSpace workSpace = null;
+        bool Creator = false;
 
         public Form1()
         {
@@ -30,15 +31,10 @@ namespace test
             label_y_mouse_move.Visible = false;
 
             setup_timer();
-            screen = new DrowInScreen(this, panel1);
+            screen = new DrawInScreen(this, panel1);
             camera = new Camera(this, screen,panel1);
+            workSpace = new WorkSpace(screen, camera);
         }
-
-        private void draw_window()
-        {
-            screen.DrowLine(100, 100, 50, 50);
-        }
-
 
         DispatcherTimer timer;
 
@@ -67,8 +63,8 @@ namespace test
 
         private void OnTimer(object sender, EventArgs e)
         {
+            workSpace.updateWindow();
             ++frames_count_in_sec;
-            draw_window();
             var out_data = camera.get_positions();
             label_x_mouse_down.Text = out_data.x1;
             label_y_mouse_down.Text = out_data.y1;  
@@ -76,37 +72,50 @@ namespace test
             label_y_mouse_move.Text = out_data.y2;
         }
 
-
-        public (int W, int H) get_WH()
-        {
-            return (this.Width, this.Height);
-        }
-
         private void MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
                 camera.MouseUp();
+            if (Creator)
+                if (e.Button == MouseButtons.Left)
+                {
+                    workSpace.AddTwoPoint(e.X,
+                        e.Y);
+                }
         }
 
         private void MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right) 
                 camera.MouseDown();
+            if (Creator)
+                if (e.Button == MouseButtons.Left)
+                {
+
+                    workSpace.AddOnePoint(
+                        e.X,
+                        e.Y);
+
+                }
         }
 
         private void MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
                 camera.MouseMove();
+            if (Creator)
+                if (e.Button == MouseButtons.Left)
+                {
+                    workSpace.AddLine(e.X,
+                        e.Y);
+                }
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-                if (camera != null) { 
-                camera.set_screen(this.Width, this.Height);
+            if (camera != null) 
+            { 
                 camera.screen_resize(this.Width, this.Height);
-                screen.new_buffer();
-                screen.DrowLine(100, 100, 50, 50);
             }
         }
 
@@ -125,6 +134,16 @@ namespace test
             label_x_mouse_move.Text = "None";
             label_y_mouse_down.Text = "None";
             label_y_mouse_move.Text = "None";
+        }
+
+        private void редакторToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Creator = true;
+        }
+
+        private void просмотрToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Creator = false;
         }
     }
 
