@@ -42,12 +42,15 @@ namespace test
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.показатьКадрсекундуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.координатыМышиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
             this.режимыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.редакторToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.просмотрToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.directorySearcher1 = new System.DirectoryServices.DirectorySearcher();
+            this.menu = new System.Windows.Forms.Panel();
+            this.button_del = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // FPSlabel
@@ -69,7 +72,7 @@ namespace test
             this.panel1.Controls.Add(this.label_y_mouse_down);
             this.panel1.Controls.Add(this.FPSlabel);
             this.panel1.Location = new System.Drawing.Point(9, 24);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(582, 333);
             this.panel1.TabIndex = 1;
@@ -161,12 +164,6 @@ namespace test
             this.координатыМышиToolStripMenuItem.Text = " Координаты мыши";
             this.координатыМышиToolStripMenuItem.Click += new System.EventHandler(this.координатыМышиToolStripMenuItem_Click);
             // 
-            // directorySearcher1
-            // 
-            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
-            // 
             // режимыToolStripMenuItem
             // 
             this.режимыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -179,33 +176,58 @@ namespace test
             // редакторToolStripMenuItem
             // 
             this.редакторToolStripMenuItem.Name = "редакторToolStripMenuItem";
-            this.редакторToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.редакторToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.редакторToolStripMenuItem.Text = "Редактор";
             this.редакторToolStripMenuItem.Click += new System.EventHandler(this.редакторToolStripMenuItem_Click);
             // 
             // просмотрToolStripMenuItem
             // 
             this.просмотрToolStripMenuItem.Name = "просмотрToolStripMenuItem";
-            this.просмотрToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.просмотрToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.просмотрToolStripMenuItem.Text = "Просмотр";
             this.просмотрToolStripMenuItem.Click += new System.EventHandler(this.просмотрToolStripMenuItem_Click);
+            // 
+            // directorySearcher1
+            // 
+            this.directorySearcher1.ClientTimeout = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerPageTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            this.directorySearcher1.ServerTimeLimit = System.TimeSpan.Parse("-00:00:01");
+            // 
+            // menu
+            // 
+            this.menu.Controls.Add(this.button_del);
+            this.menu.Location = new System.Drawing.Point(259, 413);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(200, 100);
+            this.menu.TabIndex = 3;
+            // 
+            // button_del
+            // 
+            this.button_del.Location = new System.Drawing.Point(4, 4);
+            this.button_del.Name = "button_del";
+            this.button_del.Size = new System.Drawing.Size(75, 23);
+            this.button_del.TabIndex = 0;
+            this.button_del.Text = "Удалить";
+            this.button_del.UseVisualStyleBackColor = true;
+            this.button_del.Click += new System.EventHandler(this.button_del_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 366);
+            this.ClientSize = new System.Drawing.Size(600, 363);
+            this.Controls.Add(this.menu);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
-            this.Text = "Form1";
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,6 +250,8 @@ namespace test
         private System.Windows.Forms.ToolStripMenuItem режимыToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem редакторToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem просмотрToolStripMenuItem;
+        private System.Windows.Forms.Panel menu;
+        private System.Windows.Forms.Button button_del;
     }
 }
 

@@ -8,18 +8,19 @@ using System.Windows.Forms;
 
 namespace test
 {
-
     internal class DrawInScreen
     {
-        private Form1 form;
+
+        public int radius = 10;
+        public float thick = 8;
+
         private Panel panel1;
         public (int x, int y) offset = (0,0);
         BufferedGraphicsContext panelContext;
         BufferedGraphics panelBuffer;
         Graphics panelGraphics;
-        public DrawInScreen(Form1 form, Panel panel1)
+        public DrawInScreen(Panel panel1)
         {
-            this.form = form;
             this.panel1 = panel1;
             panelContext = BufferedGraphicsManager.Current;
             panelGraphics = panel1.CreateGraphics();
@@ -44,9 +45,9 @@ namespace test
         {
             Pen skyBluePen = new Pen(Brushes.DeepSkyBlue);
 
-            skyBluePen.Width = 8.0F;
-            panelBuffer.Graphics.DrawArc(skyBluePen, x - offset.x -5,
-                y - offset.y-5, 10, 10, 0, 360);
+            skyBluePen.Width = thick;
+            panelBuffer.Graphics.DrawArc(skyBluePen, x - offset.x - radius / 2,
+                y - offset.y - radius/2, radius, radius, 0, 360);
            
         }
 
@@ -55,7 +56,7 @@ namespace test
             Pen skyBluePen = new Pen(Brushes.DeepSkyBlue);
 
             // Set the pen's width.
-            skyBluePen.Width = 8.0F;
+            skyBluePen.Width = thick;
             panelBuffer.Graphics.
                 DrawLine(skyBluePen, x1 - offset.x, y1 - offset.y,
                 x2 - offset.x, y2 - offset.y);

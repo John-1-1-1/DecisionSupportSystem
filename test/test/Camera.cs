@@ -18,13 +18,12 @@ namespace test
             (new Pos(12,30), new Pos(22, 40));
         protected bool mouse_is_down = false;
         public (int x, int y) pos = (0, 0);
-        Form1 form;
         DrawInScreen screen = null;
         Panel panel1 = null;
+
         
-        public Camera(Form1 form, DrawInScreen scr, Panel panel1)
+        public Camera(DrawInScreen scr, Panel panel1)
         {
-            this.form = form;
             this.screen = scr;
             this.panel1 = panel1;
         }
@@ -32,31 +31,30 @@ namespace test
         public void screen_resize(int x, int y)
         {
             panel1.Height = y -
-                indentation.up_left.y -
-                indentation.bot_right.y;
-
+                indentation.up_left.Y-
+                indentation.bot_right.Y;
             panel1.Width = x -
-                indentation.up_left.x -
-                indentation.bot_right.x;
-
+                indentation.up_left.X -
+                indentation.bot_right.X;
+            screen.new_buffer();
         }
 
         public void MouseUp()
         {
             mouse_is_down = false;
             pos_freeze_x +=
-                    beginner_pos_screen.x -
+                    beginner_pos_screen.X -
                     Cursor.Position.X;
             pos_freeze_y +=
-                    beginner_pos_screen.y -
+                    beginner_pos_screen.Y -
                     Cursor.Position.Y;
         }
 
         public void MouseDown()
         {
             mouse_is_down = true;
-            beginner_pos_screen.x = Cursor.Position.X;
-            beginner_pos_screen.y = Cursor.Position.Y;
+            beginner_pos_screen.X = Cursor.Position.X;
+            beginner_pos_screen.Y = Cursor.Position.Y;
 
         }
 
@@ -64,8 +62,8 @@ namespace test
         {
             if (mouse_is_down)
             {
-                return (beginner_pos_screen.x.ToString(),
-                     beginner_pos_screen.y.ToString(),
+                return (beginner_pos_screen.X.ToString(),
+                     beginner_pos_screen.Y.ToString(),
                      Cursor.Position.X.ToString(),
                      Cursor.Position.Y.ToString());
             }
@@ -82,10 +80,10 @@ namespace test
             if (mouse_is_down == true)
             {
                 pos_in_screen_x= pos_freeze_x+
-                    beginner_pos_screen.x-
+                    beginner_pos_screen.X-
                     Cursor.Position.X;
                 pos_in_screen_y = pos_freeze_y +
-                     beginner_pos_screen.y -
+                     beginner_pos_screen.Y -
                      Cursor.Position.Y;
                 screen.RefreshOffset(pos_in_screen_x, pos_in_screen_y);
             }

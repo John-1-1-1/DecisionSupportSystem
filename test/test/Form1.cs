@@ -19,7 +19,9 @@ namespace test
         DrawInScreen screen = null;
         WorkSpace workSpace = null;
         bool Creator = false;
-
+        string name_app = "My App";
+        DispatcherTimer timer;
+        public int frames_count_in_sec = 0;
         public Form1()
         {
             InitializeComponent();
@@ -29,16 +31,20 @@ namespace test
             label_x_mouse_move.Visible = false;
             label_y_mouse_down.Visible = false;
             label_y_mouse_move.Visible = false;
-
+            menu.Visible = false;
+            addName();
             setup_timer();
-            screen = new DrawInScreen(this, panel1);
-            camera = new Camera(this, screen,panel1);
-            workSpace = new WorkSpace(screen, camera);
+            screen = new DrawInScreen(panel1);
+            camera = new Camera(screen,panel1);
+            workSpace = new WorkSpace(screen, camera, menu);
         }
-
-        DispatcherTimer timer;
-
-        public int frames_count_in_sec = 0;
+        private void addName()
+        {
+            if (Creator)
+                this.Text = name_app + " (Редактирование)";
+            else
+                this.Text = name_app + " (Просмотр)";
+        }
         private void setup_timer()
         {
             
@@ -78,10 +84,8 @@ namespace test
                 camera.MouseUp();
             if (Creator)
                 if (e.Button == MouseButtons.Left)
-                {
                     workSpace.AddTwoPoint(e.X,
                         e.Y);
-                }
         }
 
         private void MouseDown(object sender, MouseEventArgs e)
@@ -90,13 +94,9 @@ namespace test
                 camera.MouseDown();
             if (Creator)
                 if (e.Button == MouseButtons.Left)
-                {
-
                     workSpace.AddOnePoint(
                         e.X,
                         e.Y);
-
-                }
         }
 
         private void MouseMove(object sender, MouseEventArgs e)
@@ -139,11 +139,18 @@ namespace test
         private void редакторToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Creator = true;
+            addName();
         }
 
         private void просмотрToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Creator = false;
+            addName();
+        }
+
+        private void button_del_Click(object sender, EventArgs e)
+        {
+            workSpace.del_point();
         }
     }
 
