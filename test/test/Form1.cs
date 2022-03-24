@@ -161,8 +161,12 @@ namespace test
             saveFileDialog1.Filter = "XML|*.xml";
             saveFileDialog1.Title = "Save an Image File";
             saveFileDialog1.ShowDialog();
-            workSpace.Save(saveFileDialog1.FileName);
-           
+            var name = saveFileDialog1.FileName;
+            if (name != "")
+                workSpace.Save(name);
+            else
+                MessageBox.Show("Вы ввели Имя! Данные не сохранены!");
+
         }
 
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -173,6 +177,11 @@ namespace test
             openFileDialog.FilterIndex = 2;
             openFileDialog.RestoreDirectory = true;
             openFileDialog.ShowDialog();
+            var name = openFileDialog.FileName;
+            if (name != "")
+                workSpace.Load(name);
+            else
+                MessageBox.Show("Вы ввели Имя! Данные не сохранены!");
         }
     }
 

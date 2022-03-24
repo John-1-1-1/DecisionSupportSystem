@@ -13,9 +13,9 @@ namespace test
         int pos_freeze_y = 0;
         int pos_in_screen_x = 0;
         int pos_in_screen_y = 0;
-        Pos beginner_pos_screen = new Pos(0,0);
-        public (Pos up_left, Pos bot_right) indentation = 
-            (new Pos(12,30), new Pos(22, 40));
+        Point beginner_pos_screen = new Point(0,0);
+        public (Point up_left, Point bot_right) indentation = 
+            (new Point(12,30), new Point(22, 40));
         protected bool mouse_is_down = false;
         public (int x, int y) pos = (0, 0);
         DrawInScreen screen = null;
@@ -74,7 +74,9 @@ namespace test
                      Cursor.Position.Y.ToString());
             }
         }
-
+        /// <summary>
+        /// Обработка движения мыши.
+        /// </summary>
         public void MouseMove()
         {
             if (mouse_is_down == true)
