@@ -29,28 +29,24 @@ namespace test
             point1 = massVect.CheckPoint(new Pos(x + screen.offset.x, y + screen.offset.y),
                 screen.radius);
 
-            reset_points();
         }
 
         public void reset_points()
         {
-            Pos point1 = new Pos(null, null);
-            Pos point2 = new Pos(null, null);
+            point1 = new Pos(null, null);
+            point2 = new Pos(null, null);
         }
 
         public void AddTwoPoint(int x, int y)
         {
             if (menu.Visible) 
                 menu.Visible = false;
-            else if (!point2.isNull() && !point2.comparer(point1))
-            {
-                massVect.add_vect(point1.X, point1.Y);
+            else if (!point2.isNull() && !point1.isNull() && !point2.comparer(point1))
                 massVect.add_vect(point2, point1);
-            }
             else
             {
                 var pos = massVect.CheckPointNull(point1, screen.radius);
-                if (!pos.isNull())
+                if (!pos.isNull() && point2.isNull() )
                 {
                     menu.Visible = true;
                     menu.Location = new Point(point1.X, point1.Y);
@@ -61,8 +57,9 @@ namespace test
 
         public void AddLine(int x, int y)
         {
-            point2 = massVect.CheckPoint(new Pos(x + screen.offset.x, y + screen.offset.y),
-                screen.radius);
+            if (!point1.isNull())
+                point2 = massVect.CheckPoint(new Pos(x + screen.offset.x, y + screen.offset.y),
+                    screen.radius);
         }
 
         public void updateWindow()
@@ -70,7 +67,7 @@ namespace test
             screen.Clear_Window();
             if (!point1.isNull() && !point2.isNull() && !point1.comparer(point2))
             {
-                screen.DrawMyPoint(point1.X, point1.X);
+                screen.DrawMyPoint(point1.X, point1.Y);
                 screen.DrawMyLine(point1.X, point1.Y, point2.X, point2.Y);
             }
             massVect.DrawE();
@@ -85,6 +82,11 @@ namespace test
                 screen.radius);
             var G = massVect.getGraph(point);
             massVect.del(G);
+        }
+
+        internal void Save(string fileName)
+        {
+            massVect.Save(fileName);
         }
     }
 }

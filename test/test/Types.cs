@@ -62,14 +62,6 @@ namespace test
 
 		}
 
-		public void add_vect(int x, int y)
-        {
-			int id = G.Count;
-			var g = CheckPointNull(new Pos(x, y),10);
-			if (g.isNull())
-				G.Add(new Graph(x, y, id));
-        }
-
 		public Pos CheckPoint(Pos point, int radius)
 		{
 			foreach (Graph g in G)
@@ -104,15 +96,21 @@ namespace test
 
 		public void add_vect(Pos point0, Pos point)
 		{
+
 			int id = G.Count;
-			Graph g0 = new Graph(point0.X, point0.Y, id);
-			Graph g = getGraph(point);
+			var fingGraph0 = getGraph(point0);
+			var fingGraph1 = getGraph(point);
+			Graph g0 = fingGraph0!=null? fingGraph0: new Graph(point0.X, point0.Y, id);
+			Graph g = fingGraph1 != null ? fingGraph1 : new Graph(point.X, point.Y, id+1);
 			if (CheckPointNull(point0, screen.radius).isNull())
-				//условия
+				
 				g0.V_id.Add(g);
 				g.V_id.Add(g0);
-				G.Add(g0);
-			
+				if (fingGraph0 == null)
+					G.Add(g0);
+				if (fingGraph1 == null)
+					G.Add(g);
+
 		}
 
         internal void DrawE()
@@ -120,9 +118,7 @@ namespace test
             foreach (Graph g in G)
 				foreach (Graph i in g.V_id)
 					if (i.id < g.id)
-                    {
 						screen.DrawMyLine(g.x, g.y, i.x,i.y);
-                    }
         }
 
         public void del(Graph g)
@@ -131,6 +127,16 @@ namespace test
 			foreach (Graph g1 in G)
 				g1.V_id.Remove(g);
 		}
+
+
+		public void Save(string name)
+        {
+
+			var xSave = new XElement("save");
+			foreach (Graph g in G)
+				xSave.Add(g.Save());
+			File.WriteAllText(name + ".xml", xSave.ToString());
+		}
     }
 
 	public class Graph
@@ -138,13 +144,21 @@ namespace test
 		public int x, y;
 		public int id;
 		public List<Graph> V_id = new List<Graph>();
-
+		string[] list;
 		public Graph(int x, int y, int id)
         {
 			this.x = x;
 			this.y = y;
 			this.id = id;
         }
+
+		public Graph(int x, int y, int id, string s)
+		{
+			this.x = x;
+			this.y = y;
+			this.id = id;
+			list = s.Split(' ');
+		}
 
 		public void del()
         {
@@ -157,8 +171,8 @@ namespace test
 			obj.Add(new XAttribute("y", y));
 			obj.Add(new XAttribute("id", id));
 			String V_id_str = "";
-			for (int i = 0; i < V_id.Count; i++)
-				V_id_str += V_id[i].ToString() + " ";
+			foreach (var v in V_id)
+				V_id_str += v.id.ToString() + " ";
 			int x1 = V_id_str.Length - 1;
 			obj.Add(new XAttribute("V_id_str", V_id_str.Substring(0, x1)));
 			return obj;
@@ -166,16 +180,13 @@ namespace test
 
 		public static Graph FromXml(XElement obj)
 		{
+
+			string pack_list = (string)obj.Attribute("V_id_str");
 			var ret = new Graph(
 				(int)obj.Attribute("x"),
 				(int)obj.Attribute("y"),
-				(int)obj.Attribute("id"));
-
-			string pack_list = (string)obj.Attribute("V_id_str");
-			List<int> ret_list = new List<int>();
-			foreach(string s in  pack_list.Split(' '))
-				ret_list.Add(int.Parse(s));
-			//ret.V_id = ret_list;
+				(int)obj.Attribute("id"),
+				pack_list);
 			return ret;
 		}
 	}

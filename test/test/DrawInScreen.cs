@@ -44,28 +44,22 @@ namespace test
         public void DrawMyPoint(int x, int y)
         {
             Pen skyBluePen = new Pen(Brushes.DeepSkyBlue);
-
             skyBluePen.Width = thick;
             panelBuffer.Graphics.DrawArc(skyBluePen, x - offset.x - radius / 2,
                 y - offset.y - radius/2, radius, radius, 0, 360);
-           
         }
 
         public void DrawMyLine(int x1,int y1,int x2,int y2)
         {
             Pen skyBluePen = new Pen(Brushes.DeepSkyBlue);
-
-            // Set the pen's width.
             skyBluePen.Width = thick;
             panelBuffer.Graphics.
                 DrawLine(skyBluePen, x1 - offset.x, y1 - offset.y,
                 x2 - offset.x, y2 - offset.y);
-            
         }
 
         public void Clear_Window()
         {
-
             panelBuffer.Graphics.Clear(System.Drawing.Color.White);
         }
 
