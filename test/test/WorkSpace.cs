@@ -23,6 +23,7 @@ namespace test
             this.camera = camera;
             this.Graph = new Graph(screen);
             this.menu = menu;
+
         }
 
         /// <summary>

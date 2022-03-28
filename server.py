@@ -5,13 +5,12 @@ db = DataBase.DataBase()
 db.connect_db()
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/get_data', methods = ['POST'])
 def index():
-    return str(db.select())
+    oid = request.args.get('oid')
+    return str(db.select([{"name": "oid", "operator": "=", "value": oid}]))
 
-@app.route('/help')
-def help():
-    pass
+
 
 @app.route('/add_data',methods = ['POST'])
 def add_data():
@@ -19,9 +18,7 @@ def add_data():
     params = request.args.get('params')
     db.insert([
         {"name": 'oid', "value": str(oid)},
-        {"name": 'params', "value": str(params)}
+        {"name": 'data', "value": str(params)}
     ])
     return "OK"
 
-if __name__ == "__main__":
-    app.run()

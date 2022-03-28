@@ -50,7 +50,7 @@ class DataBase:
         query = f"select * from {self.name}"
         if params != None:
             query += " where "
-            query +=",".join([i["name"] + i["operator"] + i["value"] for i in params])[:-1]
+            query +=",".join([i["name"] + i["operator"] + "'"+i["value"]+ "'" for i in params])
         self.cursor.execute(query)
         mobile_records = self.cursor.fetchall()
         return mobile_records
@@ -72,6 +72,7 @@ if __name__ == "__main__":
         error = db.connect_db()
     db.save()
     db.insert([{"name": "data", "value": "FfddF"},
-               {"name": "date", "value": "ccv" }])
+               {"name": "date", "value": "ccv" },
+               {"name": "oid", "value": "1"}])
     db.save()
-    print(db.select())
+    print(db.select([{"name": "oid", "operator": "=", "value": "1"}]))

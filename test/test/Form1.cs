@@ -38,7 +38,6 @@ namespace test
             screen = new DrawInScreen(panel1);
             camera = new Camera(screen,panel1);
             workSpace = new WorkSpace(screen, camera, menu);
-            
         }
         private void addName()
         {
@@ -141,12 +140,16 @@ namespace test
         private void редакторToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Creator = true;
+            listView1.Visible = false;
+            listView1.Enabled = false;
+            listView1.Hide();
             addName();
         }
 
         private void просмотрToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Creator = false;
+            listView1.Visible = true;
             addName();
         }
 
@@ -183,6 +186,7 @@ namespace test
             else
                 MessageBox.Show("Вы ввели Имя! Данные не сохранены!");
         }
+
     }
 
 
