@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="Web.cs" />
     <Compile Include="WorkSpace.cs" />
     <Compile Include="DrawInScreen.cs" />
     <Compile Include="Form1.cs">
