@@ -6,6 +6,9 @@ using System.Text;
 using System.Windows;
 using System.Xml.Linq;
 using System.Linq;
+using System.Text.Json;
+using System.Windows.Forms;
+using System.Threading.Tasks;
 
 namespace test
 {
@@ -83,13 +86,15 @@ namespace test
 	{
 		public List<Node> G  = new List<Node>();
 		DrawInScreen screen = null;
+		Panel panel_creator;
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
 		/// <param name="screen">Модуль взаимодействия с окном.</param>
-		public Graph(DrawInScreen screen)
+		public Graph(DrawInScreen screen, Panel panel_creator)
         {
 			this.screen = screen;
+			this.panel_creator = panel_creator;
 		}
 		/// <summary>
 		/// Проверить позицию. 
@@ -162,10 +167,42 @@ namespace test
 			g0.V_id.Add(g);
 			g.V_id.Add(g0);
 			if (fingGraph0 == null)
+			{
 				G.Add(g0);
+				panel_creator.Visible = true;
+				panel_creator.Location = new System.Drawing.Point(g0.x, g0.y);
+			}
+			//string jsonString = System.Text.Json.JsonSerializer.Serialize(g0);
 			if (fingGraph1 == null)
+			{
 				G.Add(g);
+				waiter(g.x, g.y);
+			}
 		}
+
+		public void g()
+        {// блок добавление точек
+			while (panel_creator.Visible);
+		}
+
+		public async Task waiter(int x, int y)
+		{
+			await  Task.Run(() =>  g());
+			while (panel_creator.Visible) ;
+			panel_creator.Visible = true;
+			panel_creator.Location = new System.Drawing.Point(x, y);
+
+		}
+
+		internal void saveInfo(string name, string oid)
+        {
+			var g = getGraph(new Point (panel_creator.Location.X,
+										panel_creator.Location.Y));
+			g.name = name;
+			g.oid = oid;
+			panel_creator.Visible = false;
+		}
+
 		/// <summary>
 		/// Поиск свободных индексов с минимальным значением.
 		/// </summary>
@@ -229,14 +266,16 @@ namespace test
 	/// </summary>
 	public class Node
     {
-		public int x, y;
-		public int id;
+		public int x { get; set; }
+		public int y { get; set; }
+		public int id { get; set; }
+		public string oid { get; set; }
+		public string name { get; set; }
 		/// <summary>
 		/// Идентификаторы графов имеющих общее ребро.
 		/// </summary>
 		public List<Node> V_id = new List<Node>();
-		public string[] list;
-		int[] nodesList;
+	
 		/// <summary>
 		/// Пустой конструктор.
 		/// Граф считается пустым если его Id = -1.
@@ -269,7 +308,7 @@ namespace test
 			this.x = x;
 			this.y = y;
 			this.id = id;
-			nodesList = s.Split(' ').Select(i => int.Parse(i)).ToArray();
+			//ДОДЕЛАТЬ
 		}
 
 		/// <summary>

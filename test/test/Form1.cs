@@ -32,12 +32,13 @@ namespace test
             label_x_mouse_move.Visible = false;
             label_y_mouse_down.Visible = false;
             label_y_mouse_move.Visible = false;
+            CreatorPanel.Visible = false;
             menu.Visible = false;
             addName();
             setup_timer();
             screen = new DrawInScreen(panel1);
             camera = new Camera(screen,panel1, listView1);
-            workSpace = new WorkSpace(screen, camera, menu);
+            workSpace = new WorkSpace(screen, camera, menu, CreatorPanel);
         }
         private void addName()
         {
@@ -151,11 +152,6 @@ namespace test
             addName();
         }
 
-        private void button_del_Click(object sender, EventArgs e)
-        {
-            workSpace.del_point();
-        }
-
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -185,6 +181,15 @@ namespace test
                 MessageBox.Show("Вы ввели Имя! Данные не сохранены!");
         }
 
+        private void buttonSaveInfo_Click(object sender, EventArgs e)
+        {
+            workSpace.SaveInfo(NameBox.Text, oidBox.Text);
+        }
+
+        private void button_del_Click_1(object sender, EventArgs e)
+        {
+            workSpace.del_point();
+        }
     }
 
 

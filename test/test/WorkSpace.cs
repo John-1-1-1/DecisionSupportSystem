@@ -17,15 +17,14 @@ namespace test
         Panel menu = null; 
         Point point1 = new Point();
         Point point2 = new Point();
-        public WorkSpace(DrawInScreen screen, Camera camera, Panel menu)
+        public WorkSpace(DrawInScreen screen, Camera camera,
+            Panel menu, Panel creatorPanel)
         {
-            this.screen = screen; 
+            this.screen = screen;
             this.camera = camera;
-            this.Graph = new Graph(screen);
+            this.Graph = new Graph(screen, creatorPanel);
             this.menu = menu;
-
         }
-
         /// <summary>
         /// Нажатие на кнопку/ добавление первой точки.
         /// </summary>
@@ -122,6 +121,11 @@ namespace test
         internal void Load(string fileName)
         {
             Graph.Load(fileName);
+        }
+
+        internal void SaveInfo(string name, string oid)
+        {
+            Graph.saveInfo(name, oid);
         }
     }
 }

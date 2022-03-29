@@ -50,7 +50,11 @@ class DataBase:
         query = f"select * from {self.name}"
         if params != None:
             query += " where "
-            query +=",".join([i["name"] + i["operator"] + "'"+i["value"]+ "'" for i in params])
+            for i in params:
+                query+=i["name"] + i["operator"]
+                if type(i["value"]) == str:
+                    query += "'" + i["value"] + "'"
+                query += i["l_operator"]
         self.cursor.execute(query)
         mobile_records = self.cursor.fetchall()
         return mobile_records
