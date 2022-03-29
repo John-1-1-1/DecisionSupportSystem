@@ -36,7 +36,7 @@ namespace test
             addName();
             setup_timer();
             screen = new DrawInScreen(panel1);
-            camera = new Camera(screen,panel1);
+            camera = new Camera(screen,panel1, listView1);
             workSpace = new WorkSpace(screen, camera, menu);
         }
         private void addName()
@@ -116,7 +116,7 @@ namespace test
         {
             if (camera != null) 
             { 
-                camera.screen_resize(this.Width, this.Height);
+                camera.screen_resize(this.Width, this.Height, Creator);
             }
         }
 
@@ -141,8 +141,6 @@ namespace test
         {
             Creator = true;
             listView1.Visible = false;
-            listView1.Enabled = false;
-            listView1.Hide();
             addName();
         }
 

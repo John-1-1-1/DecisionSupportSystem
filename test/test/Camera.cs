@@ -20,23 +20,41 @@ namespace test
         public (int x, int y) pos = (0, 0);
         DrawInScreen screen = null;
         Panel panel1 = null;
+        ListView list = null;
 
         
-        public Camera(DrawInScreen scr, Panel panel1)
+        public Camera(DrawInScreen scr, Panel panel1, ListView list)
         {
+            this.list = list;
             this.screen = scr;
             this.panel1 = panel1;
         }
 
-        public void screen_resize(int x, int y)
+        public void screen_resize(int x, int y, bool Creator)
         {
-            panel1.Height = y -
-                indentation.up_left.Y-
-                indentation.bot_right.Y;
-            panel1.Width = x -
-                indentation.up_left.X -
-                indentation.bot_right.X;
-            screen.new_buffer();
+            if (Creator)
+            {
+                panel1.Height = y -
+                    indentation.up_left.Y -
+                    indentation.bot_right.Y;
+                panel1.Width = x -
+                    indentation.up_left.X -
+                    indentation.bot_right.X;
+                screen.new_buffer();
+            }
+            else
+            {
+                panel1.Height = y -
+                    indentation.up_left.Y -
+                    indentation.bot_right.Y;
+                panel1.Width = x -
+                    indentation.up_left.X - list.Width -
+                    indentation.bot_right.X;
+                list.Location = new System.Drawing.Point( 
+                    panel1.Width + panel1.Left + 5,
+                    panel1.Top + 5);
+                screen.new_buffer();
+            }
         }
 
         public void MouseUp()

@@ -9,8 +9,8 @@ class DataBase:
     __host = None
     __port = None
 
-    def __init__(self, username="postgres", database="postgres", password="1234",
-                 host="127.0.0.1", port="5432"):
+    def __init__(self, username, database, password,
+                 host, port):
         self.__username = username
         self.__database = database
         self.__password = password
@@ -58,8 +58,12 @@ class DataBase:
     def save(self):
         self.connection.commit()
 
+    def delete_all(self):
+        self.cursor.execute(f"DELETE FROM {self.name};")
+
 if __name__ == "__main__":
-    db = DataBase()
+    db = DataBase("postgres","postgres","1234",
+                           config.host, config.port)
     error = db.connect_db()
     while error != "OK":
         user = input()
