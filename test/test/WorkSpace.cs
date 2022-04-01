@@ -17,6 +17,8 @@ namespace test
         Panel menu = null; 
         Point point1 = new Point();
         Point point2 = new Point();
+        Point point1r = new Point();
+        Point point2r = new Point();
         public WorkSpace(DrawInScreen screen, Camera camera,
             Panel menu, Panel creatorPanel)
         {
@@ -32,8 +34,9 @@ namespace test
         /// <param name="y"></param>
         public void AddOnePoint(int x, int y)
         {
-            point1 = Graph.CheckPoint(new Point(x + screen.offset.x, y + screen.offset.y),
-                screen.radius);
+            if (Graph.IsAdd)
+                point1 = Graph.CheckPoint(new Point(x + screen.offset.x, y + screen.offset.y),
+                    screen.radius);
         }
         /// <summary>
         /// Сброс значений с точек для отметки вершин.
@@ -50,36 +53,56 @@ namespace test
         /// <param name="y"></param>
         public void AddTwoPoint(int x, int y)
         {
-            // Если меню видимо, убрать его
-            if (menu.Visible) 
-                menu.Visible = false;
-            // Если оче точки заданы и точки не равны друг другу, добавить вершины.
-            else if (!point2.isNull() && !point1.isNull() && !point2.comparer(point1))
-                Graph.add_Node(point2, point1);
-            // В противном случае отобразить меню
-            else
+
+            if (Graph.IsAdd)
             {
-                var pos = Graph.CheckPointNull(point1, screen.radius);
-                if (!pos.isNull() && point2.isNull() )
-                {
-                    menu.Visible = true;
-                    menu.Location = new System.Drawing.Point(point1.X, point1.Y);
-                }
+                // Если меню видимо, убрать его
+                if (menu.Visible)
+                    menu.Visible = false;
+                // Если оче точки заданы и точки не равны друг другу, добавить вершины.
+                else if (!point2.isNull() && !point1.isNull() && !point2.comparer(point1))
+                    Graph.add_Node(point2, point1);
+                // В противном случае отобразить меню
+                //else
+                //{
+                //    var pos = Graph.CheckPointNull(point1, screen.radius);
+                //    if (!pos.isNull() && point2.isNull())
+                //    {
+                //        menu.Visible = true;
+                //        menu.Location = new System.Drawing.Point(point1.X, point1.Y);
+                //    }
+                //}
+                // Обнулить точки.
+                reset_points();
             }
-            // Обнулить точки.
-            reset_points();
         }
         /// <summary>
         /// Движение курсора/добавление линии.
         /// </summary>
         /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="y"></param> 
         public void AddLine(int x, int y)
         {
-            if (!point1.isNull())
-                point2 = Graph.CheckPoint(new Point(x + screen.offset.x, y + screen.offset.y),
-                    screen.radius);
+
+            if (Graph.IsAdd)
+                if (!point1.isNull())
+                    point2 = Graph.CheckPoint(new Point(x + screen.offset.x, y + screen.offset.y),
+                        screen.radius);
         }
+
+        internal void RightButUp(int x, int y)
+        {
+            point2r = new Point(x + screen.offset.x, y + screen.offset.y);
+            if (point1r.comparer(point2r))
+            {
+                menu.Location = new System.Drawing.Point(x, y);
+                menu.Visible = true;
+            }
+            // В противном случае отобразить меню
+         
+
+        }
+
         /// <summary>
         /// Обновление окна.
         /// </summary>
@@ -95,6 +118,12 @@ namespace test
             Graph.DrawG();
             screen.RenderWindow();
         }
+
+        internal void RightButDown(int x, int y)
+        {
+            point1r = new Point(x + screen.offset.x, y + screen.offset.y);
+        }
+
         /// <summary>
         /// Удаление точки (меню).
         /// </summary>

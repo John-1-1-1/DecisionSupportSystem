@@ -52,7 +52,7 @@ namespace test
                     indentation.bot_right.X;
                 list.Location = new System.Drawing.Point( 
                     panel1.Width + panel1.Left + 5,
-                    panel1.Top + 5);
+                    panel1.Top);
                 screen.new_buffer();
             }
         }

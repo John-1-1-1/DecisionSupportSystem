@@ -54,11 +54,11 @@ namespace test
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.CreatorPanel = new System.Windows.Forms.Panel();
-            this.NameLabel = new System.Windows.Forms.Label();
-            this.NameBox = new System.Windows.Forms.TextBox();
-            this.oidLabel = new System.Windows.Forms.Label();
-            this.oidBox = new System.Windows.Forms.TextBox();
             this.buttonSaveInfo = new System.Windows.Forms.Button();
+            this.oidBox = new System.Windows.Forms.TextBox();
+            this.oidLabel = new System.Windows.Forms.Label();
+            this.NameBox = new System.Windows.Forms.TextBox();
+            this.NameLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -84,7 +84,7 @@ namespace test
             this.panel1.Controls.Add(this.label_y_mouse_down);
             this.panel1.Controls.Add(this.FPSlabel);
             this.panel1.Location = new System.Drawing.Point(9, 24);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(582, 327);
             this.panel1.TabIndex = 1;
@@ -144,7 +144,7 @@ namespace test
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(710, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(744, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -243,11 +243,12 @@ namespace test
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "dada";
-            this.columnHeader1.Width = 64;
+            this.columnHeader1.Text = "Парамерт";
+            this.columnHeader1.Width = 68;
             // 
             // columnHeader2
             // 
+            this.columnHeader2.Text = "Значение";
             this.columnHeader2.Width = 100;
             // 
             // listView1
@@ -256,10 +257,10 @@ namespace test
             this.columnHeader1,
             this.columnHeader2});
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(595, 24);
-            this.listView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.listView1.Location = new System.Drawing.Point(598, 24);
+            this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(112, 114);
+            this.listView1.Size = new System.Drawing.Size(135, 327);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -276,38 +277,6 @@ namespace test
             this.CreatorPanel.Size = new System.Drawing.Size(156, 84);
             this.CreatorPanel.TabIndex = 7;
             // 
-            // NameLabel
-            // 
-            this.NameLabel.AutoSize = true;
-            this.NameLabel.Location = new System.Drawing.Point(3, 7);
-            this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(29, 13);
-            this.NameLabel.TabIndex = 0;
-            this.NameLabel.Text = "Имя";
-            // 
-            // NameBox
-            // 
-            this.NameBox.Location = new System.Drawing.Point(46, 4);
-            this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(100, 20);
-            this.NameBox.TabIndex = 1;
-            // 
-            // oidLabel
-            // 
-            this.oidLabel.AutoSize = true;
-            this.oidLabel.Location = new System.Drawing.Point(3, 33);
-            this.oidLabel.Name = "oidLabel";
-            this.oidLabel.Size = new System.Drawing.Size(26, 13);
-            this.oidLabel.TabIndex = 2;
-            this.oidLabel.Text = "OID";
-            // 
-            // oidBox
-            // 
-            this.oidBox.Location = new System.Drawing.Point(46, 30);
-            this.oidBox.Name = "oidBox";
-            this.oidBox.Size = new System.Drawing.Size(100, 20);
-            this.oidBox.TabIndex = 3;
-            // 
             // buttonSaveInfo
             // 
             this.buttonSaveInfo.Location = new System.Drawing.Point(71, 56);
@@ -318,18 +287,50 @@ namespace test
             this.buttonSaveInfo.UseVisualStyleBackColor = true;
             this.buttonSaveInfo.Click += new System.EventHandler(this.buttonSaveInfo_Click);
             // 
+            // oidBox
+            // 
+            this.oidBox.Location = new System.Drawing.Point(46, 30);
+            this.oidBox.Name = "oidBox";
+            this.oidBox.Size = new System.Drawing.Size(100, 20);
+            this.oidBox.TabIndex = 3;
+            // 
+            // oidLabel
+            // 
+            this.oidLabel.AutoSize = true;
+            this.oidLabel.Location = new System.Drawing.Point(3, 33);
+            this.oidLabel.Name = "oidLabel";
+            this.oidLabel.Size = new System.Drawing.Size(26, 13);
+            this.oidLabel.TabIndex = 2;
+            this.oidLabel.Text = "OID";
+            // 
+            // NameBox
+            // 
+            this.NameBox.Location = new System.Drawing.Point(46, 4);
+            this.NameBox.Name = "NameBox";
+            this.NameBox.Size = new System.Drawing.Size(100, 20);
+            this.NameBox.TabIndex = 1;
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.AutoSize = true;
+            this.NameLabel.Location = new System.Drawing.Point(3, 7);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(29, 13);
+            this.NameLabel.TabIndex = 0;
+            this.NameLabel.Text = "Имя";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(710, 358);
+            this.ClientSize = new System.Drawing.Size(744, 358);
             this.Controls.Add(this.CreatorPanel);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.panel1.ResumeLayout(false);

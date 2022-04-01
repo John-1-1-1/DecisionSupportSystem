@@ -83,17 +83,28 @@ namespace test
         private void MouseUp(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
+            {
+                if (Creator)
+                    workSpace.RightButUp(e.X, e.Y);
                 camera.MouseUp();
-            if (Creator)
-                if (e.Button == MouseButtons.Left)
-                    workSpace.AddTwoPoint(e.X,
-                        e.Y);
+            }
+            if (e.Button == MouseButtons.Left)
+            {
+                if (Creator)
+                    workSpace.AddTwoPoint(
+                            e.X,
+                            e.Y);
+            }
         }
 
         private void MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right) 
+            if (e.Button == MouseButtons.Right)
+            {
+                if (Creator)
+                    workSpace.RightButDown(e.X, e.Y);
                 camera.MouseDown();
+            }
             if (Creator)
                 if (e.Button == MouseButtons.Left)
                     workSpace.AddOnePoint(
@@ -104,11 +115,14 @@ namespace test
         private void MouseMove(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
+            {
                 camera.MouseMove();
+            }
             if (Creator)
                 if (e.Button == MouseButtons.Left)
                 {
-                    workSpace.AddLine(e.X,
+                    workSpace.AddLine(
+                        e.X,
                         e.Y);
                 }
         }
@@ -143,6 +157,7 @@ namespace test
             Creator = true;
             listView1.Visible = false;
             addName();
+            camera.screen_resize(Width, Height, Creator);
         }
 
         private void просмотрToolStripMenuItem_Click(object sender, EventArgs e)
@@ -150,6 +165,7 @@ namespace test
             Creator = false;
             listView1.Visible = true;
             addName();
+            camera.screen_resize(Width,Height,Creator);
         }
 
         private void сохранитьToolStripMenuItem_Click(object sender, EventArgs e)

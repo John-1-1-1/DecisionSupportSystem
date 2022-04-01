@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Camera.cs" />
+    <Compile Include="PanelParams.cs" />
     <Compile Include="json.cs" />
     <Compile Include="Web.cs" />
     <Compile Include="WorkSpace.cs" />

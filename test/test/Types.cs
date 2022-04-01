@@ -87,6 +87,7 @@ namespace test
 		public List<Node> G  = new List<Node>();
 		DrawInScreen screen = null;
 		Panel panel_creator;
+		public bool IsAdd = true;
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
@@ -169,14 +170,15 @@ namespace test
 			if (fingGraph0 == null)
 			{
 				G.Add(g0);
-				panel_creator.Visible = true;
-				panel_creator.Location = new System.Drawing.Point(g0.x, g0.y);
+				IsAdd = false;
+				waiter(g0.x, g0.y, false);
 			}
 			//string jsonString = System.Text.Json.JsonSerializer.Serialize(g0);
 			if (fingGraph1 == null)
 			{
 				G.Add(g);
-				waiter(g.x, g.y);
+				IsAdd = false;
+				waiter(g.x, g.y, true);
 			}
 		}
 
@@ -185,15 +187,19 @@ namespace test
 			while (panel_creator.Visible);
 		}
 
-		public async Task waiter(int x, int y)
+		public async Task waiter(int x, int y, bool wait)
 		{
-			await  Task.Run(() =>  g());
-			while (panel_creator.Visible) ;
-			panel_creator.Visible = true;
+			if (wait)
+				await  Task.Run(() =>  g());
 			panel_creator.Location = new System.Drawing.Point(x, y);
-
+			panel_creator.Visible = true;
+			IsAdd = true;
 		}
-
+		/// <summary>
+		/// Добавление информации к точкам. ОСНОВНОЙ
+		/// </summary>
+		/// <param name="name">Имя</param>
+		/// <param name="oid">Object id</param>
 		internal void saveInfo(string name, string oid)
         {
 			var g = getGraph(new Point (panel_creator.Location.X,
