@@ -53,6 +53,7 @@ namespace test
                 list.Location = new System.Drawing.Point( 
                     panel1.Width + panel1.Left + 5,
                     panel1.Top);
+                list.Height = panel1.Height;
                 screen.new_buffer();
             }
         }

@@ -38,7 +38,7 @@ namespace test
             setup_timer();
             screen = new DrawInScreen(panel1);
             camera = new Camera(screen,panel1, listView1);
-            workSpace = new WorkSpace(screen, camera, menu, CreatorPanel);
+            workSpace = new WorkSpace(screen, camera, menu, CreatorPanel, listView1);
         }
         private void addName()
         {
@@ -93,6 +93,9 @@ namespace test
                 if (Creator)
                     workSpace.AddTwoPoint(
                             e.X,
+                            e.Y);
+                else
+                    workSpace.LeftButCheck(e.X,
                             e.Y);
             }
         }
@@ -199,7 +202,7 @@ namespace test
 
         private void buttonSaveInfo_Click(object sender, EventArgs e)
         {
-            workSpace.SaveInfo(NameBox.Text, oidBox.Text);
+            workSpace.SaveInfo(NameBox.Text, idBox.Text);
         }
 
         private void button_del_Click_1(object sender, EventArgs e)

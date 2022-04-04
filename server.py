@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, request
 import DataBase
 import config
+import snmp
 
 db = None
 app = Flask(__name__)
@@ -51,10 +52,15 @@ def delete():
     else:
         return "don't log in"
 
+@app.route('/beta_get')
+def add_data():
+    id = request.args.get('id')
+    oids = request.args.get('oids').split("|")
+    return "|".join([str(i) for i in snmp.get_value(oids)])
 
 
 @app.route('/add_data')
-def add_data():
+def add_dataq():
     global db
     oid = request.args.get('oid')
     params = request.args.get('params')

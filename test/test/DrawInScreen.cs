@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace test
 {
-    internal class DrawInScreen
+    public class DrawInScreen
     {
 
         public int radius = 10;
@@ -41,12 +41,20 @@ namespace test
             offset.y = y;
         }
 
-        public void DrawMyPoint(int x, int y)
+
+        //PENS
+        public void DrawMyPoint(int x, int y, bool IsClick)
         {
             Pen skyBluePen = new Pen(Brushes.DeepSkyBlue);
+            Pen ForestGreenPen = new Pen(System.Drawing.ColorTranslator.FromHtml("#f4a900"));
             skyBluePen.Width = thick;
-            panelBuffer.Graphics.DrawArc(skyBluePen, x - offset.x - radius / 2,
-                y - offset.y - radius/2, radius, radius, 0, 360);
+            ForestGreenPen.Width = thick;
+            if (IsClick)
+                panelBuffer.Graphics.DrawArc(ForestGreenPen, x - offset.x - radius / 2,
+                    y - offset.y - radius/2, radius, radius, 0, 360);
+            else
+                panelBuffer.Graphics.DrawArc(skyBluePen, x - offset.x - radius / 2,
+                    y - offset.y - radius / 2, radius, radius, 0, 360);
         }
 
         public void DrawMyLine(int x1,int y1,int x2,int y2)

@@ -55,8 +55,8 @@ namespace test
             this.listView1 = new System.Windows.Forms.ListView();
             this.CreatorPanel = new System.Windows.Forms.Panel();
             this.buttonSaveInfo = new System.Windows.Forms.Button();
-            this.oidBox = new System.Windows.Forms.TextBox();
-            this.oidLabel = new System.Windows.Forms.Label();
+            this.idBox = new System.Windows.Forms.TextBox();
+            this.idLabel = new System.Windows.Forms.Label();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
@@ -268,8 +268,8 @@ namespace test
             // CreatorPanel
             // 
             this.CreatorPanel.Controls.Add(this.buttonSaveInfo);
-            this.CreatorPanel.Controls.Add(this.oidBox);
-            this.CreatorPanel.Controls.Add(this.oidLabel);
+            this.CreatorPanel.Controls.Add(this.idBox);
+            this.CreatorPanel.Controls.Add(this.idLabel);
             this.CreatorPanel.Controls.Add(this.NameBox);
             this.CreatorPanel.Controls.Add(this.NameLabel);
             this.CreatorPanel.Location = new System.Drawing.Point(0, 106);
@@ -287,21 +287,21 @@ namespace test
             this.buttonSaveInfo.UseVisualStyleBackColor = true;
             this.buttonSaveInfo.Click += new System.EventHandler(this.buttonSaveInfo_Click);
             // 
-            // oidBox
+            // idBox
             // 
-            this.oidBox.Location = new System.Drawing.Point(46, 30);
-            this.oidBox.Name = "oidBox";
-            this.oidBox.Size = new System.Drawing.Size(100, 20);
-            this.oidBox.TabIndex = 3;
+            this.idBox.Location = new System.Drawing.Point(46, 30);
+            this.idBox.Name = "idBox";
+            this.idBox.Size = new System.Drawing.Size(100, 20);
+            this.idBox.TabIndex = 3;
             // 
-            // oidLabel
+            // idLabel
             // 
-            this.oidLabel.AutoSize = true;
-            this.oidLabel.Location = new System.Drawing.Point(3, 33);
-            this.oidLabel.Name = "oidLabel";
-            this.oidLabel.Size = new System.Drawing.Size(26, 13);
-            this.oidLabel.TabIndex = 2;
-            this.oidLabel.Text = "OID";
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(3, 33);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(18, 13);
+            this.idLabel.TabIndex = 2;
+            this.idLabel.Text = "ID";
             // 
             // NameBox
             // 
@@ -370,8 +370,8 @@ namespace test
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.Panel CreatorPanel;
-        private System.Windows.Forms.TextBox oidBox;
-        private System.Windows.Forms.Label oidLabel;
+        private System.Windows.Forms.TextBox idBox;
+        private System.Windows.Forms.Label idLabel;
         private System.Windows.Forms.TextBox NameBox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Button buttonSaveInfo;
