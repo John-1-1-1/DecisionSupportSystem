@@ -55,3 +55,4 @@ C:\Users\john\Desktop\gitKraken\myServer\MyServer\test\test\bin\Debug\System.Tex
 C:\Users\john\Desktop\gitKraken\myServer\MyServer\test\test\bin\Debug\System.Text.Json.xml
 C:\Users\john\Desktop\gitKraken\myServer\MyServer\test\test\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\john\Desktop\gitKraken\myServer\MyServer\test\test\bin\Debug\System.ValueTuple.xml
+C:\Users\john\Desktop\gitKraken\myServer\MyServer\test\test\obj\Debug\test.ParamsForm.resources

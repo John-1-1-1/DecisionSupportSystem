@@ -209,6 +209,12 @@ namespace test
         {
             workSpace.del_point();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ParamsForm f = new ParamsForm(null);
+            f.Show();
+        }
     }
 
 

@@ -17,7 +17,7 @@ namespace test
 		DrawInScreen screen = null;
 		Panel panel_creator;
 		public bool IsAdd = true;
-
+		Node workerNode = null;
 		/// <summary>
 		/// Конструктор.
 		/// </summary>
@@ -87,7 +87,7 @@ namespace test
         /// </summary>
         /// <param name="point1">Первая точка.</param>
         /// <param name="point2">Вторая точка.</param>
-        public void add_Node(Point point1, Point point2)
+        public async Task add_Node(Point point1, Point point2)
 		{
 			List<int> index = find_min_count();
 			var fingGraph0 = getGraph(point1);
@@ -109,26 +109,38 @@ namespace test
 			{
 				G.Add(g0);
 				IsAdd = false;
-				waiter(g0.x, g0.y, false);
 			}
+
 			//string jsonString = System.Text.Json.JsonSerializer.Serialize(g0);
 			if (fingGraph1 == null && g != null)
 			{
 				G.Add(g);
 				IsAdd = false;
-				waiter(g.x, g.y, true);
+			}
+
+			if (fingGraph0 == null && g0 != null)
+			{
+
+				workerNode = g0;
+				waiter(g0.x, g0.y, false, g0);
+			}
+
+			await Task.Run(() => waiterr());
+			//string jsonString = System.Text.Json.JsonSerializer.Serialize(g0);
+			if (fingGraph1 == null && g != null)
+			{
+				workerNode = g;
+				waiter(g.x, g.y, true, g);
 			}
 		}
 
-		public void g()
+		public void waiterr()
         {// блок добавление точек
 			while (panel_creator.Visible);
 		}
 
-		public async Task waiter(int x, int y, bool wait)
+		public void waiter(int x, int y, bool wait, Node gg)
 		{
-			if (wait)
-				await  Task.Run(() =>  g());
 			panel_creator.Location = new System.Drawing.Point(x - screen.offset.x, 
 				y - screen.offset.y);
 			panel_creator.Visible = true;
@@ -138,14 +150,12 @@ namespace test
 		/// Добавление информации к точкам. ОСНОВНОЙ
 		/// </summary>
 		/// <param name="name">Имя</param>
-		/// <param name="oid">Object id</param>
-		internal void saveInfo(string name, string oid)
+		/// <param name="id">Object id</param>
+		internal void saveInfo(string name, string id)
         {
-			var g = getGraph(new Point (panel_creator.Location.X,
-										panel_creator.Location.Y).
-										Plus(screen));
-			g.name = name;
-			g.ip = oid;
+
+			workerNode.name = name;
+			workerNode.ip = id;
 			panel_creator.Visible = false;
 		}
 

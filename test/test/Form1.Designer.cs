@@ -59,6 +59,7 @@ namespace test
             this.idLabel = new System.Windows.Forms.Label();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -267,6 +268,7 @@ namespace test
             // 
             // CreatorPanel
             // 
+            this.CreatorPanel.Controls.Add(this.button1);
             this.CreatorPanel.Controls.Add(this.buttonSaveInfo);
             this.CreatorPanel.Controls.Add(this.idBox);
             this.CreatorPanel.Controls.Add(this.idLabel);
@@ -274,12 +276,12 @@ namespace test
             this.CreatorPanel.Controls.Add(this.NameLabel);
             this.CreatorPanel.Location = new System.Drawing.Point(0, 106);
             this.CreatorPanel.Name = "CreatorPanel";
-            this.CreatorPanel.Size = new System.Drawing.Size(156, 84);
+            this.CreatorPanel.Size = new System.Drawing.Size(200, 84);
             this.CreatorPanel.TabIndex = 7;
             // 
             // buttonSaveInfo
             // 
-            this.buttonSaveInfo.Location = new System.Drawing.Point(71, 56);
+            this.buttonSaveInfo.Location = new System.Drawing.Point(122, 56);
             this.buttonSaveInfo.Name = "buttonSaveInfo";
             this.buttonSaveInfo.Size = new System.Drawing.Size(75, 23);
             this.buttonSaveInfo.TabIndex = 4;
@@ -291,7 +293,7 @@ namespace test
             // 
             this.idBox.Location = new System.Drawing.Point(46, 30);
             this.idBox.Name = "idBox";
-            this.idBox.Size = new System.Drawing.Size(100, 20);
+            this.idBox.Size = new System.Drawing.Size(151, 20);
             this.idBox.TabIndex = 3;
             // 
             // idLabel
@@ -307,7 +309,7 @@ namespace test
             // 
             this.NameBox.Location = new System.Drawing.Point(46, 4);
             this.NameBox.Name = "NameBox";
-            this.NameBox.Size = new System.Drawing.Size(100, 20);
+            this.NameBox.Size = new System.Drawing.Size(151, 20);
             this.NameBox.TabIndex = 1;
             // 
             // NameLabel
@@ -318,6 +320,16 @@ namespace test
             this.NameLabel.Size = new System.Drawing.Size(29, 13);
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Имя";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Добавить OIDs";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
@@ -375,6 +387,7 @@ namespace test
         private System.Windows.Forms.TextBox NameBox;
         private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.Button buttonSaveInfo;
+        private System.Windows.Forms.Button button1;
     }
 }
 
