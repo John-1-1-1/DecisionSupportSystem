@@ -130,6 +130,10 @@ namespace test
         }
 
         /// <summary>
+        /// ffffssssssssssssssssssssssssssssssssssssssssssssssssssssss
+        /// </summary>
+        int kk = 0;
+        /// <summary>
         /// Обновление окна.
         /// </summary>
         public void updateWindow()
@@ -148,11 +152,17 @@ namespace test
             screen.RenderWindow();
             if (NodeIsClick.IsClick)
             {
-                if (panelParams.countItems() == 0)
+                kk += 1;
+                if (kk > 10)
+                {
+                    kk = 0;
                     panelParams.add_data(NodeIsClick);
+                }
+
             }
             else
                 panelParams.clear_list();
+
 
         }
 

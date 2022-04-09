@@ -54,12 +54,12 @@ namespace test
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listView1 = new System.Windows.Forms.ListView();
             this.CreatorPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.buttonSaveInfo = new System.Windows.Forms.Button();
             this.idBox = new System.Windows.Forms.TextBox();
             this.idLabel = new System.Windows.Forms.Label();
             this.NameBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.menu.SuspendLayout();
@@ -145,7 +145,7 @@ namespace test
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.menuStrip1.Size = new System.Drawing.Size(744, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(812, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -244,8 +244,8 @@ namespace test
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "Парамерт";
-            this.columnHeader1.Width = 68;
+            this.columnHeader1.Text = "Параметр";
+            this.columnHeader1.Width = 100;
             // 
             // columnHeader2
             // 
@@ -261,7 +261,7 @@ namespace test
             this.listView1.Location = new System.Drawing.Point(598, 24);
             this.listView1.Margin = new System.Windows.Forms.Padding(2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(135, 327);
+            this.listView1.Size = new System.Drawing.Size(203, 327);
             this.listView1.TabIndex = 4;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
@@ -278,6 +278,16 @@ namespace test
             this.CreatorPanel.Name = "CreatorPanel";
             this.CreatorPanel.Size = new System.Drawing.Size(200, 84);
             this.CreatorPanel.TabIndex = 7;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(6, 56);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 23);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "Добавить OIDs";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonSaveInfo
             // 
@@ -301,9 +311,9 @@ namespace test
             this.idLabel.AutoSize = true;
             this.idLabel.Location = new System.Drawing.Point(3, 33);
             this.idLabel.Name = "idLabel";
-            this.idLabel.Size = new System.Drawing.Size(18, 13);
+            this.idLabel.Size = new System.Drawing.Size(17, 13);
             this.idLabel.TabIndex = 2;
-            this.idLabel.Text = "ID";
+            this.idLabel.Text = "IP";
             // 
             // NameBox
             // 
@@ -321,21 +331,11 @@ namespace test
             this.NameLabel.TabIndex = 0;
             this.NameLabel.Text = "Имя";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(6, 56);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Добавить OIDs";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 358);
+            this.ClientSize = new System.Drawing.Size(812, 358);
             this.Controls.Add(this.CreatorPanel);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.listView1);

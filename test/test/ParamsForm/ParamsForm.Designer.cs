@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewGroup listViewGroup1 = new System.Windows.Forms.ListViewGroup("ListViewGroup", System.Windows.Forms.HorizontalAlignment.Left);
             this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.OID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Name = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBoxOID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -43,12 +42,13 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
+            this.Name,
+            this.OID});
+            listViewGroup1.Header = "ListViewGroup";
+            listViewGroup1.Name = "listViewGroup1";
+            this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
+            listViewGroup1});
             this.listView1.HideSelection = false;
-            this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
             this.listView1.Location = new System.Drawing.Point(12, 12);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(313, 262);
@@ -56,13 +56,15 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             // 
-            // columnHeader1
+            // OID
             // 
-            this.columnHeader1.Width = 130;
+            this.OID.Text = "OID";
+            this.OID.Width = 170;
             // 
-            // columnHeader2
+            // Name
             // 
-            this.columnHeader2.Width = 179;
+            this.Name.Text = "Наименование";
+            this.Name.Width = 143;
             // 
             // textBoxOID
             // 
@@ -104,6 +106,7 @@
             this.buttonADD.TabIndex = 5;
             this.buttonADD.Text = "Добавить";
             this.buttonADD.UseVisualStyleBackColor = true;
+            this.buttonADD.Click += new System.EventHandler(this.buttonADD_Click);
             // 
             // ParamsForm
             // 
@@ -116,7 +119,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxOID);
             this.Controls.Add(this.listView1);
-            this.Name = "ParamsForm";
             this.Text = "ParamsForm";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -126,8 +128,8 @@
         #endregion
 
         private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader OID;
+        private System.Windows.Forms.ColumnHeader Name;
         private System.Windows.Forms.TextBox textBoxOID;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
